@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="linkpayanthar">
+
+	<select id="getLinkPayAntharList" parameterClass="java.util.HashMap"
+		resultClass="com.defonds.entity.LinkPayAnthar">
+		SELECT transid AS transid, TO_ATM_NO AS toAtmNo,
+		SIMPLE_ACCT_NUM AS simpleAcctNum FROM link_pay_anthar
+		WHERE REG_DATE
+		BETWEEN #startDate# AND #endDate#
+		ORDER BY REG_DATE;
+	</select>
+	
+	<update id="updateLinkPayAntharByTransid" parameterClass="java.util.HashMap">
+		UPDATE link_pay_anthar
+		SET
+		TO_ATM_NO=#toAtmNo#, SIMPLE_ACCT_NUM=#simpleAcctNum#
+		WHERE transid=#transid#;
+	</update>
+
+</sqlMap>
